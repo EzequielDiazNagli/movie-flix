@@ -4,3 +4,17 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+::-webkit-scrollbar {
+  margin-top: 10px;
+  height: 8px; /* height of horizontal scrollbar ← You're missing this */
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 30px;
+  background: rgb(219, 219, 219);
+}

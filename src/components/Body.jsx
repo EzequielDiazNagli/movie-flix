@@ -2,44 +2,87 @@ import React from "react";
 import { useEffect, useState } from "react";
 import "./body.css";
 import PopularMovieCard from "./PopularMovieCard";
+import PopularSerieCard from "./PopularSerieCard";
 
 export default function Body() {
-  const [popularMovie, setPopularMovie] = useState([])
-  async function getDataFromAPI() {
-    await fetch("https://api.themoviedb.org/3/movie/popular?api_key=ee2648f9f1e9bd8b7424b1f5bb21b561")
+  const [popularMovie, setPopularMovie] = useState([]);
+  const [popularSerie, setPopularSerie] = useState([]);
+  const [tendringMovie, setTrendingMovie] = useState([]);
+
+  const trendingMov =
+    tendringMovie[Math.floor(Math.random() * tendringMovie.length)];
+
+  async function getPopularMovie() {
+    await fetch(
+      "https://api.themoviedb.org/3/movie/popular?api_key=ee2648f9f1e9bd8b7424b1f5bb21b561"
+    )
       .then((response) => response.json())
       .then((json) => setPopularMovie(json.results));
   }
-  useEffect(() => {
-    getDataFromAPI();
-  },[]) 
 
+  async function getPopularSeries() {
+    await fetch(
+      "https://api.themoviedb.org/3/tv/popular?api_key=ee2648f9f1e9bd8b7424b1f5bb21b561"
+    )
+      .then((response) => response.json())
+      .then((json) => setPopularSerie(json.results));
+  }
+  async function getTrendingMovies() {
+    await fetch(
+      "https://api.themoviedb.org/3/trending/movie/week?api_key=ee2648f9f1e9bd8b7424b1f5bb21b561"
+    )
+      .then((response) => response.json())
+      .then((json) => setTrendingMovie(json.results));
+  }
+
+  console.log(trendingMov);
+
+  useEffect(() => {
+    getPopularMovie();
+    getPopularSeries();
+    getTrendingMovies();
+  }, []);
+  console.log(trendingMov);
   // console.log(popularMovie);
+  const getImageURL = (posterpath) => {
+    return `https://www.themoviedb.org/t/p/w220_and_h330_face${posterpath}`;
+  };
 
   return (
-    <div>
-      <div className="h-screen bg-slate-600 p-9 flex flex-col gap-5">
-        <div className="estreno h-1/3 w-full bg-red-500 rounded-xl"></div>
-        <div className="flex justify-between text-white px-5">
-          <h1 className="text-xl">Popular Movies</h1>
-          <h1 className="text-xl">All Movies</h1>
-        </div>
-        <div className="h-1/3 w-full flex gap-5">
+    <div className="min-h-screen bg-slate-600 p-9 flex flex-col gap-5">
+      <div className="estreno h-[30rem] w-full rounded-xl mb-40">
+        {/* <img
+          className="h-full w-full object-cover rounded-xl"
+          src={getImageURL(trendingMov?.backdrop_path)}
+          alt={getImageURL(trendingMov?.title)}
+        /> */}
+      </div>
+      <div className="flex justify-between text-white px-5">
+        <h1 className="text-xl">Popular Movies</h1>
+        <h1 className="text-xl">All Movies</h1>
+      </div>
+      <div className="h-2/3 w-full flex gap-5 overflow-x-auto pb-2">
         {popularMovie.map((movie, index) => {
           return (
-            <PopularMovieCard key={index} movie={movie}/>
-          )
+            <div key={index} className="w-full h-full ">
+              <PopularMovieCard key={index} movie={movie} />
+            </div>
+          );
         })}
-        </div>
-        <div className="flex justify-between text-white px-5">
-          <h1 className="text-xl">Popular Series</h1>
-          <h1 className="text-xl">All Series</h1>
-        </div>
-        <div className="h-1/3 w-full flex gap-5 rounded-xl">
-          <div className="w-1/3 bg-white rounded-xl"></div>
-          <div className="w-1/3 bg-yellow-600 rounded-xl"></div>
-          <div className="w-1/3 bg-slate-700 rounded-xl"></div>
-        </div>
+      </div>
+      <div className="flex justify-between text-white px-5">
+        <h1 className="text-xl">Popular Series</h1>
+        <h1 className="text-xl">All Series</h1>
+      </div>
+
+      <div className="h-2/3 w-full flex gap-5 overflow-x-auto pb-2">
+        {popularSerie.map((serie, index) => {
+          return (
+            <div key={index} className="w-full h-full ">
+              <PopularSerieCard serie={serie} />
+            </div>
+          );
+        })}
       </div>
     </div>
   );

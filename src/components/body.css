@@ -18,3 +18,82 @@
   border-radius: 30px;
   background: rgb(219, 219, 219);
 }
+
+.movieCard{
+/* box-shadow: 0 1em 1em rgba(0, 0, 0, 0.5) !important; */
+background: radial-gradient(#111 50%, #000 100%);
+overflow: hidden;
+position: relative;
+}
+
+.movieCard img{
+  display: block;
+  transform: scale(1.1);
+  transition: all 0.3s ease-out;
+}
+
+.movieCard:hover img{
+  transform: scale(1);
+  opacity: 0.5;
+}
+
+.movieCard-description{
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  padding: 15px;
+  text-align: center;
+  color: #fff;
+  font-size: 18px;
+}
+.movieCard-description h1{
+  font-weight: 700;
+  font-size: 32px;
+  margin: 0 0 20px;
+  transform: translateY(30px);
+  opacity: 0;
+  transition: all 0.3s ease-out;
+  color: white;
+}
+.movieCard-description h2{
+  color: white;
+  transform: translateY(30px);
+  opacity: 0;
+  transition: all 0.3s ease-out;
+}
+.movieCard-description button{
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  width: 120px;
+  background: #427b92;
+  display: inline-block;
+  padding: 10px;
+  text-decoration: none;
+  border-radius: 5px;
+  transform: translateY(30px);
+  opacity: 0;
+  transition: all 0.3s ease-out;
+}
+.movieCard-description button:hover{
+  background: #264653;
+}
+
+.movieCard:hover .movieCard-description h1{
+  opacity: 1;
+  transform: translateY(0);
+}
+.movieCard:hover .movieCard-description h2{
+  opacity: 1;
+  transform: translateY(0);
+}
+.movieCard:hover .movieCard-description button{
+  opacity: 1;
+  transform: translateY(0);
+}

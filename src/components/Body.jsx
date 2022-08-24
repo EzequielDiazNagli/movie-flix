@@ -1,16 +1,20 @@
 import React from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./body.css";
+import PopularMovieCard from "./PopularMovieCard";
 
 export default function Body() {
+  const [popularMovie, setPopularMovie] = useState([])
   async function getDataFromAPI() {
     await fetch("https://api.themoviedb.org/3/movie/popular?api_key=ee2648f9f1e9bd8b7424b1f5bb21b561")
       .then((response) => response.json())
-      .then((json) => console.log(json));
+      .then((json) => setPopularMovie(json.results));
   }
   useEffect(() => {
     getDataFromAPI();
   },[]) 
+
+  // console.log(popularMovie);
 
   return (
     <div>
@@ -21,8 +25,11 @@ export default function Body() {
           <h1 className="text-xl">All Movies</h1>
         </div>
         <div className="h-1/3 w-full flex gap-5">
-          <div className="w-1/2 bg-yellow-100 rounded-xl"></div>
-          <div className="w-1/2 bg-blue-300 rounded-xl"></div>
+        {popularMovie.map((movie, index) => {
+          return (
+            <PopularMovieCard key={index} movie={movie}/>
+          )
+        })}
         </div>
         <div className="flex justify-between text-white px-5">
           <h1 className="text-xl">Popular Series</h1>

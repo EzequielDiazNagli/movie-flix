@@ -1,7 +1,11 @@
+import Body from "./components/Body";
+import NavBar from "./components/NavBar";
+
 function App() {
   return (
-    <div>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
+    <div className="flex flex-col min-h-screen">
+      <NavBar />
+      <Body />
     </div>
   );
 }

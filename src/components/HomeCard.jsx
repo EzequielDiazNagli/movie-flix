@@ -5,7 +5,6 @@ const getImageURL = (posterpath) => {
 };
 
 export default function HomeCard({ catalogo }) {
-    // console.log(catalogo);
     return (
         <div className="w-56 h-full bg-white rounded-xl movieCard">
         <img

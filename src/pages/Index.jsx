@@ -35,23 +35,13 @@ export default function Body() {
       .then((json) => setTrendingMovie(json.results));
   }
 
-  // async function getSearch() {
-  //   await fetch(
-  //     `https://api.themoviedb.org/3/search/keyword?api_key=ee2648f9f1e9bd8b7424b1f5bb21b561&page=1`
-  //   )
-  //     .then((response) => response.json())
-  //     .then((json) => setTrendingMovie(json.results));
-  // }
-  // console.log(trendingMov);
-
   useEffect(() => {
     getPopularMovie();
     getPopularSeries();
     getTrendingMovies();
     // getSearch();
   }, []);
-  // console.log(trendingMov);
-  // console.log(popularMovie);
+
 
   return (
     <div className="min-h-screen bg-slate-600 p-9 flex flex-col gap-5">

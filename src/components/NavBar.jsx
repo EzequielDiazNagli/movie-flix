@@ -3,6 +3,10 @@ import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
 import BuscadorNavBar from "./BuscadorNavBar";
+import Search from "@mui/icons-material/Search";
+import { useEffect, useState } from "react";
+import {Link as LinkRouter} from "react-router-dom"
+
 
 const navigation = [
   { name: "Dashboard", href: "#", current: true },
@@ -15,7 +19,29 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
+
+
 export default function NavBar() {
+  const [search, setSearch] = useState("");
+  const [filter, setFilter] = useState([]);
+  // console.log(search);
+
+  async function getFilter() {
+    console.log(search);
+    await fetch(
+      `https://api.themoviedb.org/3/search/multi?api_key=ee2648f9f1e9bd8b7424b1f5bb21b561&language=en-US&query=${search}&page=1&include_adult=false`
+      )
+      .then((response) => response.json())
+      .then((json) => console.log(json.results));
+  }
+
+  // function handleSumit(){
+  //   e.preventDefault()
+  //   console.log(e);
+  // }
+
+  // getFilter()
+
   return (
     <Disclosure as="nav" className="bg-gray-800">
       {({ open }) => (
@@ -67,7 +93,20 @@ export default function NavBar() {
                 </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                <BuscadorNavBar />
+                
+                {/* BUSCADOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOR */}
+                {/* BUSCADOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOR */}
+                {/* BUSCADOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOR */}
+
+              <div className="bg-white">
+                <form action="/buscador">
+                  <label>
+                    <input type="text" name="name" placeholder="Movie, series, etc" onChange={e => {setSearch(e.target.value)}}/>
+                  </label>
+                  <input type="submit" value="Submit" onChange={getFilter()}/>
+                </form>
+              </div>
+                
                 <button
                   type="button"
                   className="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"

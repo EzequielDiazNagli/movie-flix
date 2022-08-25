@@ -1,13 +1,13 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import "./body.css";
-import PopularMovieCard from "./PopularMovieCard";
-import PopularSerieCard from "./PopularSerieCard";
+import "../styles/index.css";
+import HomeCard from "../components/HomeCard";
 
 export default function Body() {
   const [popularMovie, setPopularMovie] = useState([]);
   const [popularSerie, setPopularSerie] = useState([]);
   const [tendringMovie, setTrendingMovie] = useState([]);
+
 
   const trendingMov =
     tendringMovie[Math.floor(Math.random() * tendringMovie.length)];
@@ -35,18 +35,23 @@ export default function Body() {
       .then((json) => setTrendingMovie(json.results));
   }
 
-  console.log(trendingMov);
+  // async function getSearch() {
+  //   await fetch(
+  //     `https://api.themoviedb.org/3/search/keyword?api_key=ee2648f9f1e9bd8b7424b1f5bb21b561&page=1`
+  //   )
+  //     .then((response) => response.json())
+  //     .then((json) => setTrendingMovie(json.results));
+  // }
+  // console.log(trendingMov);
 
   useEffect(() => {
     getPopularMovie();
     getPopularSeries();
     getTrendingMovies();
+    // getSearch();
   }, []);
-  console.log(trendingMov);
+  // console.log(trendingMov);
   // console.log(popularMovie);
-  const getImageURL = (posterpath) => {
-    return `https://www.themoviedb.org/t/p/w220_and_h330_face${posterpath}`;
-  };
 
   return (
     <div className="min-h-screen bg-slate-600 p-9 flex flex-col gap-5">
@@ -65,7 +70,7 @@ export default function Body() {
         {popularMovie.map((movie, index) => {
           return (
             <div key={index} className="w-full h-full ">
-              <PopularMovieCard key={index} movie={movie} />
+              <HomeCard key={index} catalogo={movie} />
             </div>
           );
         })}
@@ -79,7 +84,7 @@ export default function Body() {
         {popularSerie.map((serie, index) => {
           return (
             <div key={index} className="w-full h-full ">
-              <PopularSerieCard serie={serie} />
+              <HomeCard key={index} catalogo={serie} />
             </div>
           );
         })}

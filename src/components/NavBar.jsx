@@ -10,8 +10,8 @@ import { useDispatch } from "react-redux";
 import filterAction from "../redux/actions/filterActions"
 
 
-const navigation = [
-  { name: "Home", href: "#", current: true },
+const navigation = [ 
+  { name: "Index", href: "/", current: true },
   { name: "Popular", href: "#", current: false },
   { name: "Upcomming", href: "#", current: false },
   { name: "Valoradas", href: "#", current: false },
@@ -75,9 +75,9 @@ console.log("navBar", search)
                 <div className="hidden sm:block sm:ml-6">
                   <div className="flex space-x-4">
                     {navigation.map((item) => (
-                      <a
+                      <LinkRouter
                         key={item.name}
-                        href={item.href}
+                        to={item.href}
                         className={classNames(
                           item.current
                             ? "bg-gray-900 text-white"
@@ -87,7 +87,7 @@ console.log("navBar", search)
                         aria-current={item.current ? "page" : undefined}
                       >
                         {item.name}
-                      </a>
+                      </LinkRouter>
                     ))}
                   </div>
                 </div>

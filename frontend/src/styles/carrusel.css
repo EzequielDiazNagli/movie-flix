@@ -32,12 +32,11 @@ body {
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     -webkit-justify-content: center;
-    justify-content: center;
+    justify-content: flex-start;
     -webkit-box-align: center;
     -ms-flex-align: center;
-    -webkit-align-items: center;
-    align-items: center;
-    border-radius: 20px;
+    -webkit-align-items: flex-end;
+    padding: 0 5rem;
 }
 
 .swiper-slide img {
@@ -45,4 +44,25 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+.infoSlide{
+  color: white;
+  height: 50%;
+  max-width: 50rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.infoSlide p{
+  text-align: left;
+}
+
+.btnCarosuel{
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 1rem;
+  border-radius: 10px;
 }

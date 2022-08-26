@@ -7,8 +7,9 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "../styles/carrusel.css";
+import "swiper/css/effect-fade";
 // import required modules
-import { Navigation, Pagination, Autoplay } from "swiper";
+import {Pagination, Autoplay, EffectFade } from "swiper";
 
 export default function App() {
     const [tendringMovie, setTrendingMovie] = useState([]);
@@ -40,13 +41,14 @@ export default function App() {
     return (
         <>
         <Swiper 
-        navigation={true}
+        // navigation={true}
         pagination={true}
+        effect={"fade"}
         autoplay={{
-            delay: 2500,
+            delay: 6000,
             disableOnInteraction: false,
         }}
-        modules={[Navigation, Pagination, Autoplay]} 
+        modules={[Pagination, Autoplay, EffectFade]} 
         className="mySwiper">
             {trendingMov.map((movie, index) => {
                 return (
@@ -55,7 +57,11 @@ export default function App() {
                     style={{backgroundImage:`url(${getBackGroundURL(movie?.backdrop_path)})`, 
                     backgroundPosition: "center", 
                     backgroundSize: "cover"}}>
-                        <h1 className="text-5xl text-white">{movie.title}</h1>
+                        <div className="infoSlide">
+                            <h1 className="text-5xl text-white">{movie.title}</h1>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit impedit, quae ad sapiente ex officiis sequi? Minima corrupti.</p>
+                            <button className="btnCarosuel">More Info</button>
+                        </div>
                     </SwiperSlide>
                     )
                 })

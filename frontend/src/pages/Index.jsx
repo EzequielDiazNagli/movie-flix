@@ -31,7 +31,7 @@ export default function Body() {
 
 
   return (
-    <div className="min-h-screen bg-slate-600 p-9 flex flex-col gap-5">
+    <div className="min-h-screen bg-slate-600 flex flex-col gap-5">
       <div className="estreno h-[30rem] w-full rounded-xl mb-40">
         <Carrusel/>
       </div>

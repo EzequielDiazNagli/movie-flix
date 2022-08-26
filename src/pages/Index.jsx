@@ -2,15 +2,11 @@ import React from "react";
 import { useEffect, useState } from "react";
 import "../styles/index.css";
 import HomeCard from "../components/HomeCard";
+import Carrusel from "../components/Carrusel"
 
 export default function Body() {
   const [popularMovie, setPopularMovie] = useState([]);
   const [popularSerie, setPopularSerie] = useState([]);
-  const [tendringMovie, setTrendingMovie] = useState([]);
-
-
-  const trendingMov =
-    tendringMovie[Math.floor(Math.random() * tendringMovie.length)];
 
   async function getPopularMovie() {
     await fetch(
@@ -27,29 +23,17 @@ export default function Body() {
       .then((response) => response.json())
       .then((json) => setPopularSerie(json.results));
   }
-  async function getTrendingMovies() {
-    await fetch(
-      "https://api.themoviedb.org/3/trending/movie/week?api_key=ee2648f9f1e9bd8b7424b1f5bb21b561"
-    )
-      .then((response) => response.json())
-      .then((json) => setTrendingMovie(json.results));
-  }
 
   useEffect(() => {
     getPopularMovie();
     getPopularSeries();
-    getTrendingMovies();
   }, []);
 
 
   return (
     <div className="min-h-screen bg-slate-600 p-9 flex flex-col gap-5">
       <div className="estreno h-[30rem] w-full rounded-xl mb-40">
-        {/* <img
-          className="h-full w-full object-cover rounded-xl"
-          src={getImageURL(trendingMov?.backdrop_path)}
-          alt={getImageURL(trendingMov?.title)}
-        /> */}
+        <Carrusel/>
       </div>
       <div className="flex justify-between text-white px-5">
         <h1 className="text-xl">Popular Movies</h1>

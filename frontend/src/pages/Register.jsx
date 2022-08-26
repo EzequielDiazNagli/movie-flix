@@ -26,7 +26,7 @@ function handleSubmit(){
         password: password
     }
 console.log(userData)
-    // dispatch(userAction.register(userData))
+    dispatch(userAction.register(userData))
 
 
 }

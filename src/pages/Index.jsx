@@ -39,7 +39,6 @@ export default function Body() {
     getPopularMovie();
     getPopularSeries();
     getTrendingMovies();
-    // getSearch();
   }, []);
 
 

@@ -17,7 +17,7 @@ export default function HomeCard({ catalogo }) {
         <div className='movieCard-description'>
             <h1>{catalogo.title || catalogo.name}</h1>
             <h2>{catalogo.release_date || catalogo.first_air_date}</h2>
-            <LinkRouter to={"/details"}>
+            <LinkRouter to={`/details/${catalogo.id}`}>
                 <button> Read More
                 <span></span>
                 </button>

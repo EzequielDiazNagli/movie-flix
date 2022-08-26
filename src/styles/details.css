@@ -3,13 +3,16 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    background-image: url("https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces/5rrGVmRUuCKVbqUu41XIWTXJmNA.jpg");
-    background-position: right -200px top;
+    /* background-image: url("https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces/5rrGVmRUuCKVbqUu41XIWTXJmNA.jpg"); */
+    background-position: center;
     background-size: cover;
+    background-repeat: no-repeat;
 }
 .detailsContainerA{
     display: flex;
     justify-content: center;
+    width: 100%;
+    height: 100%;
     background-image: linear-gradient(to right, rgba(31.5, 31.5, 31.5, 1) 150px, rgba(31.5, 31.5, 31.5, 0.84) 100%);
 }
 .detailsBox{

@@ -31,11 +31,11 @@ export default function Body() {
 
 
   return (
-    <div className="min-h-screen bg-slate-600 flex flex-col gap-5">
+    <div className="min-h-screen bg-slate-600 flex flex-col">
       <div className="estreno h-[30rem] w-full rounded-xl">
         <Carrusel/>
       </div>
-      <div className="p-10 flex flex-col gap-5">
+      <div className="bodyIndex p-10 flex flex-col gap-5">
         <div className="flex justify-between text-white px-5">
           <h1 className="text-xl">Popular Movies</h1>
           <h1 className="text-xl">All Movies</h1>

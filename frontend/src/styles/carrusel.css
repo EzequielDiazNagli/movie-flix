@@ -53,6 +53,7 @@ body {
   display: flex;
   align-items: flex-end;
 }
+
 .infoSlide{
   color: white;
   height: 60%;
@@ -67,6 +68,7 @@ body {
     font-size: 3rem;
     line-height: 1;
     font-weight: bold;
+    text-align: left;
 }
 
 .infoSlide p{

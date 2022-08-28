@@ -58,6 +58,13 @@
     font-size: 1.3em;
 }
 .info{
+    width: 100%;
     display: flex;
     justify-content: space-between;
+}
+.infoCreator{
+    width: 33.3%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }

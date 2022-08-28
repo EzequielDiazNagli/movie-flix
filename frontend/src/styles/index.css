@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
 .estreno {
   /* background-image: url("http://pm1.narvii.com/7140/f835aa7d72d5e69b1484ec35829f44a7234f185fr1-2048-758v2_uhq.jpg"); */
   background-position: center;
@@ -17,6 +23,10 @@
 ::-webkit-scrollbar-thumb {
   border-radius: 30px;
   background: rgb(219, 219, 219);
+}
+
+.bodyIndex{
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .movieCard{

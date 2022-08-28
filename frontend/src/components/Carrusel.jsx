@@ -2,6 +2,8 @@ import React, { useRef, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useEffect} from "react";
+import {Link as LinkRouter} from "react-router-dom"
+
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
@@ -21,6 +23,7 @@ export default function App() {
     }
 
     const trendingMov =  fiveRandom(tendringMovie);
+    console.log(trendingMov);
 
     async function getTrendingMovies() {
         await fetch(
@@ -62,8 +65,10 @@ export default function App() {
                         <div className="asd">
                             <div className="infoSlide">
                                 <h1>{movie.title}</h1>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit impedit, quae ad sapiente ex officiis sequi? Minima corrupti.</p>
-                                <button className="btnCarosuel">More Info</button>
+                                <p className="line-clamp-3">{movie.overview}</p>
+                                <LinkRouter to={`/details/${movie.id}`}>
+                                    <button className="btnCarosuel">More Info</button>
+                                </LinkRouter>
                             </div>
                         </div>
                     </SwiperSlide>

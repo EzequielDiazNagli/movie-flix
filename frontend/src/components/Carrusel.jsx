@@ -43,9 +43,11 @@ export default function App() {
         <Swiper 
         // navigation={true}
         pagination={true}
+        loop={true}
         effect={"fade"}
+        speed={1500}        
         autoplay={{
-            delay: 6000,
+            delay: 5000,
             disableOnInteraction: false,
         }}
         modules={[Pagination, Autoplay, EffectFade]} 
@@ -57,10 +59,12 @@ export default function App() {
                     style={{backgroundImage:`url(${getBackGroundURL(movie?.backdrop_path)})`, 
                     backgroundPosition: "center", 
                     backgroundSize: "cover"}}>
-                        <div className="infoSlide">
-                            <h1 className="text-5xl text-white">{movie.title}</h1>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit impedit, quae ad sapiente ex officiis sequi? Minima corrupti.</p>
-                            <button className="btnCarosuel">More Info</button>
+                        <div className="asd">
+                            <div className="infoSlide">
+                                <h1>{movie.title}</h1>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit impedit, quae ad sapiente ex officiis sequi? Minima corrupti.</p>
+                                <button className="btnCarosuel">More Info</button>
+                            </div>
                         </div>
                     </SwiperSlide>
                     )

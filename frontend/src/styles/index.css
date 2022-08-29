@@ -94,7 +94,7 @@ position: relative;
   border: none;
   display: block;
   position: relative;
-  padding: 0.7em 2.4em;
+  padding: 0.5em 1em;
   font-size: 18px;
   background: transparent;
   cursor: pointer;
@@ -133,7 +133,7 @@ button span::before {
 button:hover span::before {
   transform: translate(-50%, -50%) rotate(-90deg);
   width: 100%;
-  background: #475569;
+  background: #6366F1;
  }
 .movieCard-description button:hover{
   color: white;
@@ -153,4 +153,17 @@ button:active span::before {
 .movieCard:hover .movieCard-description button{
   opacity: 1;
   transform: translateY(0);
+}
+
+.buscador{
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+.buscador input{
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  padding: 0.5rem;
+  border-radius: 10px;
+  width: 15rem;
+  color: white;
 }

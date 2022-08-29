@@ -1,13 +1,16 @@
 .detailsContainer{
-    height: 60vh;
+    height: 70vh;
     width: 100%;
     display: flex;
     justify-content: center;
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
+    background-repeat: no-repeat;
+
 }
 .detailsContainerA{
+    padding-top: 10vh;
     display: flex;
     justify-content: center;
     width: 100%;

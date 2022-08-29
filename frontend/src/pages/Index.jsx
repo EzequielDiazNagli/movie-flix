@@ -32,7 +32,7 @@ export default function Body() {
 
   return (
     <div className="min-h-screen bg-slate-600 flex flex-col">
-      <div className="estreno h-[30rem] w-full rounded-xl">
+      <div className="estreno h-[40rem] w-full rounded-xl">
         <Carrusel/>
       </div>
       <div className="bodyIndex p-10 flex flex-col gap-5">

@@ -40,7 +40,7 @@ export default function Details() {
   };
 
   return (
-    <div className='min-h-[90vh] bg-slate-600 flex flex-col gap-5 '>
+    <div className='min-h-[100vh] bg-slate-600 flex flex-col gap-5'>
       <div className="detailsContainer" style={{backgroundImage:`url(${getBackGroundURL(movie?.backdrop_path)})`}}>
         <div className='detailsContainerA'>
         <div className='detailsBox'>

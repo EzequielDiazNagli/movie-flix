@@ -14,11 +14,22 @@ import userActions from "./redux/actions/userActions.js";
 function App() {
   const dispatch = useDispatch()
 
+  async function getLatestMovie() {
+    await fetch(
+    "https://api.themoviedb.org/3/movie/now_playing?api_key=ee2648f9f1e9bd8b7424b1f5bb21b561&language=en-US&page=1"
+    )
+    .then((response) => response.json())
+    .then((json) => dispatch(userActions.lastMovies(json.results)));
+}
+
+  
   useEffect(() => {
     if(localStorage.getItem('token')!== null) {
         const token = localStorage.getItem("token")
         dispatch(userActions.verifyToken(token))
     }
+    getLatestMovie()
+    dispatch(userActions.getOneUser())
     // eslint-disable-next-line
   },[])
 

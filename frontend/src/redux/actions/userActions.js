@@ -115,6 +115,34 @@ const userActions = {
         };
       },
 
+      getOneUser: () => {
+        const token = localStorage.getItem("token")
+        return async (dispatch, getState) => {
+       
+          const res = await axios.get(`${urlBack}/api/getoneuser`, {headers: { Authorization: "Bearer " + token},})
+          dispatch({
+            type: "FAVORITES",
+            payload: res.data.response
+          });
+          
+        
+        };
+      },
+
+      lastMovies: (lastmovies) => {
+       
+        return async (dispatch, getState) => {
+       dispatch({
+            type: "LAST_MOVIES",
+            payload: lastmovies
+          });
+          
+        
+        };
+      },
+
+     
+
 
 }
 

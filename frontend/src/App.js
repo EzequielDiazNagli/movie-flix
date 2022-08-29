@@ -1,7 +1,7 @@
 import Index from "./pages/Index.jsx";
 import NavBar from "./components/NavBar";
 import { Route, Routes } from "react-router-dom";
-import Buscador from "./pages/Buscador.jsx";
+import PageSearch from "./pages/PageSearch.jsx";
 import Details from "./pages/Details.jsx";
 import Register from "./pages/Register.jsx";
 import Login from "./pages/Login.jsx";
@@ -12,7 +12,7 @@ function App() {
       <NavBar />
         <Routes>
           <Route path= "/" element={<Index />}/>
-          <Route path= "/buscador" element={<Buscador />}/>
+          <Route path= "/pagesearch" element={<PageSearch />}/>
           <Route path= "/details/:id" element={<Details />}/>
           <Route path= "/login" element={<Login />}/>
           <Route path= "/register" element={<Register />}/>

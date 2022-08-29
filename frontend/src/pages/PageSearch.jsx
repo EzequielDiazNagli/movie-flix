@@ -8,7 +8,6 @@ export default function Buscador() {
   const [movieFilter, setMovieFilter] = useState([])
   
   const search = useSelector(store => store.filterReducer.search)
-  console.log("useSelector",search)
 
   async function getFilter(search) {
     await fetch(
@@ -25,11 +24,10 @@ export default function Buscador() {
     getFilter(search)
   }, [search]);
 
-  console.log(movieFilter)
 
   return (
-    <div className="bg-slate-600 flex flex-col min-h-screen gap-3 items-center pt-10">
-      {movieFilter.length ? 
+    <div className="bg-slate-600 flex flex-col min-h-screen gap-3 items-center pt-[10vh]">
+      {movieFilter?.length ? 
 
       movieFilter?.map((movie, index) => {
         return(

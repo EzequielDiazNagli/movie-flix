@@ -5,12 +5,10 @@ import { useEffect, useState } from "react";
 
 
 export default function Details() {
+  const {id} = useParams()
 
   const [movie, setMovie] = useState();
-  console.log(movie);
   const [cast, setCast] = useState();
-
-  const {id} = useParams()
 
   async function getMovieId() {
     await fetch(
@@ -40,7 +38,7 @@ export default function Details() {
   };
 
   return (
-    <div className='min-h-[90vh] bg-slate-600 flex flex-col gap-5 '>
+    <div className='min-h-[100vh] bg-slate-600 flex flex-col gap-5'>
       <div className="detailsContainer" style={{backgroundImage:`url(${getBackGroundURL(movie?.backdrop_path)})`}}>
         <div className='detailsContainerA'>
         <div className='detailsBox'>
@@ -50,6 +48,14 @@ export default function Details() {
           <div className='detailsBoxTwo'>
             <div className='detailsBoxTwo-A'>
               <h1>{movie?.title}</h1>
+              <div className='detailsBoxTwo-A-info'>
+                <p>{movie?.release_date}</p>
+                {/* {movie.genres.map(gen => {
+                  return(
+                  <p>{gen.}</p>
+                  )
+                })} */}
+              </div>
             </div>
             <div className='detailsBoxTwo-B'>
               <div>Icon</div>
@@ -62,15 +68,15 @@ export default function Details() {
                 <p>{movie?.overview}</p>
               </div>
               <div className='info'>
-                <div>
+                <div className='infoCreator'>
                   <h3>Nombre</h3>
                   <p>Apellido</p>
                 </div>
-                <div>
+                <div className='infoCreator'>
                   <h3>Nombre</h3>
                   <p>Apellido</p>
                 </div>
-                <div>
+                <div className='infoCreator'>
                   <h3>Nombre</h3>
                   <p>Apellido</p>
                 </div>

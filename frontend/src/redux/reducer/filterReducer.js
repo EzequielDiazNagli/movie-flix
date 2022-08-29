@@ -19,8 +19,6 @@ const filterReducer = (state = initialState, action) => {
         //         oneCity: action.payload,
         //     }
         case 'FILTER_REDUCER':
-            console.log("redu",action.payload)
-
             // let filter = state.cities.filter(city => city.name.toLowerCase().startsWith(action.payload.toLowerCase().trim()))
             return {                        
                 ...state,

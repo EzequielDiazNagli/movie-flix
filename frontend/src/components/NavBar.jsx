@@ -12,8 +12,6 @@ import filterAction from "../redux/actions/filterActions"
 const navigation = [ 
   { name: "Index", href: "/", current: true },
   { name: "Popular", href: "#", current: false },
-  { name: "Upcomming", href: "#", current: false },
-  { name: "Valoradas", href: "#", current: false },
 ];
 
 function classNames(...classes) {
@@ -30,22 +28,20 @@ export default function NavBar() {
 
 function handleSubmit(e){
 e.preventDefault()
-console.log(e)
 dispatch(filterAction.filterReducer(search))
 if(e.isTrusted){
-  navigate("/buscador")
+  navigate("/pagesearch")
+  setSearch("")
 
 }
     
 
 }
-
-console.log("navBar", search)
   return (
-    <Disclosure as="nav" className="bg-gray-800">
+    <Disclosure as="nav" className="bg-gray-800  sm:bg-transparent absolute z-10 w-full">
       {({ open }) => (
         <>
-          <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+          <div className="max-w-screen-2xl mx-auto px-2 sm:px-6 lg:px-8">
             <div className="relative flex items-center justify-between h-[10vh]">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 {/* Mobile menu button*/}
@@ -71,7 +67,7 @@ console.log("navBar", search)
                     alt="Workflow"
                   />
                 </div>
-                <div className="hidden sm:block sm:ml-6">
+                <div className="hidden sm:block sm:ml-6" >
                   <div className="flex space-x-4">
                     {navigation.map((item) => (
                       <LinkRouter
@@ -79,8 +75,8 @@ console.log("navBar", search)
                         to={item.href}
                         className={classNames(
                           item.current
-                            ? "bg-gray-900 text-white"
-                            : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                            ? "text-white hover:text-gray-300"
+                            : "text-white hover:text-gray-300",
                           "px-3 py-2 rounded-md text-sm font-medium"
                         )}
                         aria-current={item.current ? "page" : undefined}
@@ -91,22 +87,23 @@ console.log("navBar", search)
                   </div>
                 </div>
               </div>
-              <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+              <div className="gap-2 absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-0 sm:pr-0">
                 
                 {/* BUSCADOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOR */}
                 {/* BUSCADOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOR */}
                 {/* BUSCADOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOR */}
 
-              <div className="bg-white">
+              <div className="buscador">
                 <form onSubmit={handleSubmit}>
-                  <label><input type="text" name="name" placeholder="Movie, series, etc" onChange={e => setSearch(e.target.value)}/></label>
-                  <button type="submit">Submit</button>
+                    <label>
+                      <input type="text" name="name" placeholder="Search..." value={search} onChange={e => setSearch(e.target.value)}/>
+                    </label>
                 </form>
               </div>
-                
+              
                 <button
                   type="button"
-                  className="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+                  className="p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
                 >
                   <span className="sr-only">View notifications</span>
                   <BellIcon className="h-6 w-6" aria-hidden="true" />

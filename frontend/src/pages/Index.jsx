@@ -31,36 +31,38 @@ export default function Body() {
 
 
   return (
-    <div className="min-h-screen bg-slate-600 p-9 flex flex-col gap-5">
-      <div className="estreno h-[30rem] w-full rounded-xl mb-40">
+    <div className="min-h-screen bg-slate-600 flex flex-col">
+      <div className="estreno h-[40rem] w-full rounded-xl">
         <Carrusel/>
       </div>
-      <div className="flex justify-between text-white px-5">
-        <h1 className="text-xl">Popular Movies</h1>
-        <h1 className="text-xl">All Movies</h1>
-      </div>
-      <div className="h-2/3 w-full flex gap-5 overflow-x-auto pb-2">
-        {popularMovie.map((movie, index) => {
-          return (
-            <div key={index} className="w-full h-full ">
-              <HomeCard key={index} catalogo={movie} />
-            </div>
-          );
-        })}
-      </div>
-      <div className="flex justify-between text-white px-5">
-        <h1 className="text-xl">Popular Series</h1>
-        <h1 className="text-xl">All Series</h1>
-      </div>
+      <div className="bodyIndex p-10 flex flex-col gap-5">
+        <div className="flex justify-between text-white px-5">
+          <h1 className="text-2xl">Popular Movies</h1>
+          <h1 className="text-2xl">All Movies</h1>
+        </div>
+        <div className="h-2/3 w-full flex gap-5 overflow-x-auto pb-2">
+          {popularMovie.map((movie, index) => {
+            return (
+              <div key={index} className="w-full h-full ">
+                <HomeCard key={index} catalogo={movie} />
+              </div>
+            );
+          })}
+        </div>
+        <div className="flex justify-between text-white px-5">
+          <h1 className="text-2xl">Popular Series</h1>
+          <h1 className="text-2xl">All Series</h1>
+        </div>
 
-      <div className="h-2/3 w-full flex gap-5 overflow-x-auto pb-2">
-        {popularSerie.map((serie, index) => {
-          return (
-            <div key={index} className="w-full h-full ">
-              <HomeCard key={index} catalogo={serie} />
-            </div>
-          );
-        })}
+        <div className="h-2/3 w-full flex gap-5 overflow-x-auto pb-2">
+          {popularSerie.map((serie, index) => {
+            return (
+              <div key={index} className="w-full h-full ">
+                <HomeCard key={index} catalogo={serie} />
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

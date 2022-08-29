@@ -38,6 +38,7 @@ body {
     -webkit-align-items: flex-end;
 }
 
+
 .swiper-slide img {
     display: block;
     width: 100%;
@@ -54,6 +55,7 @@ body {
   align-items: flex-end;
 }
 
+
 .infoSlide{
   color: white;
   height: 60%;
@@ -64,6 +66,7 @@ body {
   align-items: flex-start;
   padding: 0 1rem 3rem 1rem;
 }
+
 .infoSlide h1{
     font-size: 3rem;
     line-height: 1;
@@ -78,10 +81,10 @@ body {
 .btnCarosuel{
   background-color: rgba(0, 0, 0, 0.5);
   padding: 0.7rem;
-  border-radius: 5px;
+  border-radius: 10px;
   width: 10rem;
   transition: all 0.5s;
-  border: 1px solid rgba(255, 255, 255, 0);
+  border: 1px solid rgba(255, 255, 255, 0.4)
 }
 .btnCarosuel:hover{
   border-radius: 10px;

@@ -28,7 +28,7 @@ export default function Buscador() {
   console.log(movieFilter)
 
   return (
-    <div className="bg-slate-600 flex flex-col min-h-screen gap-3 items-center pt-10">
+    <div className="bg-slate-600 flex flex-col min-h-screen gap-3 items-center pt-[10vh]">
       {movieFilter.length ? 
 
       movieFilter?.map((movie, index) => {

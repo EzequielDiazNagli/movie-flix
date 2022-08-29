@@ -37,8 +37,8 @@ export default function Body() {
       </div>
       <div className="bodyIndex p-10 flex flex-col gap-5">
         <div className="flex justify-between text-white px-5">
-          <h1 className="text-xl">Popular Movies</h1>
-          <h1 className="text-xl">All Movies</h1>
+          <h1 className="text-2xl">Popular Movies</h1>
+          <h1 className="text-2xl">All Movies</h1>
         </div>
         <div className="h-2/3 w-full flex gap-5 overflow-x-auto pb-2">
           {popularMovie.map((movie, index) => {
@@ -50,8 +50,8 @@ export default function Body() {
           })}
         </div>
         <div className="flex justify-between text-white px-5">
-          <h1 className="text-xl">Popular Series</h1>
-          <h1 className="text-xl">All Series</h1>
+          <h1 className="text-2xl">Popular Series</h1>
+          <h1 className="text-2xl">All Series</h1>
         </div>
 
         <div className="h-2/3 w-full flex gap-5 overflow-x-auto pb-2">

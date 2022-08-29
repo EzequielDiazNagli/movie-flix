@@ -158,12 +158,17 @@ button:active span::before {
 .buscador{
   background-color: rgba(0, 0, 0, 0.3);
   border-radius: 10px;
+  margin-right: 0.5rem;
 }
 .buscador input{
   background-color: transparent;
   border: 1px solid rgba(255, 255, 255, 0.4);
   padding: 0.5rem;
   border-radius: 10px;
-  width: 15rem;
+  width: 10rem;
   color: white;
+  transition: all 0.5s;
+}
+.buscador input:focus{
+  width: 15rem;
 }

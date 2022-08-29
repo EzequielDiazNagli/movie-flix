@@ -25,7 +25,7 @@ export default function Login() {
     }
 
     return (
-        <div className="min-h-[90vh] bg-slate-600 flex flex-col items-center">
+        <div className="min-h-[100vh] bg-slate-600 flex flex-col items-center pt-[10vh]">
     
     <div className="h-full w-full px-4">
     

@@ -100,7 +100,7 @@ console.log("navBar", search)
               <div className="buscador">
                 <form onSubmit={handleSubmit}>
                     <label>
-                      <input type="text" name="name" placeholder="Movie, series, etc" onChange={e => setSearch(e.target.value)}/>
+                      <input type="text" name="name" placeholder="Search..." onChange={e => setSearch(e.target.value)}/>
                     </label>
                 </form>
               </div>

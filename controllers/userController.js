@@ -210,10 +210,21 @@ const userControllers = {
                 .catch((error) => console.log(error))
             }
         }catch{(error) => res.json({success: false, response: error})}
+    },
 
-
-    }
-
+    getOneUser: async (req, res) => {
+        const id = req.user.id
+        let user
+        let error = null
+        try {
+            user = await User.findOne({ _id: id })
+        } catch (err) { error = err }
+        res.json({
+            response: error ? 'ERROR' : user.idMovies,
+            success: error ? false : true,
+            error: error
+        })
+    },
 }
 
 module.exports = userControllers;

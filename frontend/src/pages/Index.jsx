@@ -5,15 +5,15 @@ import HomeCard from "../components/HomeCard";
 import Carrusel from "../components/Carrusel"
 
 export default function Body() {
-  const [popularMovie, setPopularMovie] = useState([]);
+  const [latestMovie, setLatestMovie] = useState([]);
   const [popularSerie, setPopularSerie] = useState([]);
-
-  async function getPopularMovie() {
+  
+  async function getLatestMovie() {
     await fetch(
-      "https://api.themoviedb.org/3/movie/popular?api_key=ee2648f9f1e9bd8b7424b1f5bb21b561"
+      "https://api.themoviedb.org/3/movie/now_playing?api_key=ee2648f9f1e9bd8b7424b1f5bb21b561&language=en-US&page=1"
     )
       .then((response) => response.json())
-      .then((json) => setPopularMovie(json.results));
+      .then((json) => setLatestMovie(json.results));
   }
 
   async function getPopularSeries() {
@@ -23,10 +23,10 @@ export default function Body() {
       .then((response) => response.json())
       .then((json) => setPopularSerie(json.results));
   }
-  console.log(popularMovie)
+  // console.log(popularMovie)
 
   useEffect(() => {
-    getPopularMovie();
+    getLatestMovie();
     getPopularSeries();
   }, []);
 
@@ -38,11 +38,11 @@ export default function Body() {
       </div>
       <div className="bodyIndex p-10 flex flex-col gap-5">
         <div className="flex justify-between text-white px-5">
-          <h1 className="text-2xl">Popular Movies</h1>
+          <h1 className="text-2xl">Now Playing</h1>
           <h1 className="text-2xl">All Movies</h1>
         </div>
         <div className="h-2/3 w-full flex gap-5 overflow-x-auto pb-2">
-          {popularMovie.map((movie, index) => {
+          {latestMovie?.map((movie, index) => {
             return (
               <div key={index} className="w-full h-full ">
                 <HomeCard key={index} catalogo={movie} />

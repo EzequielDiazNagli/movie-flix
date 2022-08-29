@@ -5,6 +5,7 @@ import PageSearch from "./pages/PageSearch.jsx";
 import Details from "./pages/Details.jsx";
 import Register from "./pages/Register.jsx";
 import Login from "./pages/Login.jsx";
+import Favorite from "./pages/Favorite.jsx";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import userActions from "./redux/actions/userActions.js";
@@ -31,6 +32,7 @@ function App() {
           <Route path= "/details/:id" element={<Details />}/>
           <Route path= "/login" element={<Login />}/>
           <Route path= "/register" element={<Register />}/>
+          <Route path= "/favorites" element={<Favorite />}/>
           
         </Routes>
     </div>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch } from "react-redux";
-import userAction from '../redux/actions/userAction';
+import userAction from '../redux/actions/userActions';
 import {Link as LinkRouter} from "react-router-dom"
 import GoogleRegister from '../components/GoogleRegister';
 

@@ -23,6 +23,7 @@ export default function Body() {
       .then((response) => response.json())
       .then((json) => setPopularSerie(json.results));
   }
+  console.log(popularMovie)
 
   useEffect(() => {
     getPopularMovie();

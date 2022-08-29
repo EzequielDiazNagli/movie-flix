@@ -5,8 +5,23 @@ import PageSearch from "./pages/PageSearch.jsx";
 import Details from "./pages/Details.jsx";
 import Register from "./pages/Register.jsx";
 import Login from "./pages/Login.jsx";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import userActions from "./redux/actions/userActions.js";
+
 
 function App() {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    if(localStorage.getItem('token')!== null) {
+        const token = localStorage.getItem("token")
+        dispatch(userActions.verifyToken(token))
+    }
+    // eslint-disable-next-line
+  },[])
+
+
   return (
     <div className="flex flex-col min-h-screen">
       <NavBar />

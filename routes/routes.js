@@ -1,20 +1,22 @@
 const Router = require('express').Router(); 
-// const validatorSignUp = require('../config/validatorSignUp')
-// const passport = require('../config/passport')
-const { signUpUser, signInUser, verifyEmail, checkToken, modifyUser  } = require('../controllers/userControlllers')
+const validatorRegister = require('../config/validatorRegister')
+const passport = require('../config/passport')
+const { registerUser, loginUser, verifyEmail, checkToken, pushFav} = require('../controllers/userController')
 
-Router.route('/auth/register')
-.post(validatorSignUp, signUpUser)
+Router.route('/register')
+.post(validatorRegister, registerUser)
 
 Router.route('/login')
-.post(signInUser)
+.post(loginUser)
 
 Router.route('/verify/:string')
 .get(verifyEmail)
 
-Router.route('/singInToken')
+Router.route('/logintoken')
 .get(passport.authenticate('jwt', {session: false}), checkToken)
 
+Router.route('/pushfav')
+.put(passport.authenticate('jwt', {session: false}), pushFav)
 
 
 

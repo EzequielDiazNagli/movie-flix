@@ -7,8 +7,10 @@ const userSchema = new mongoose.Schema({
     password: {type: Array, required:true},
     email: {type: String, required:true},
     from: {type: Array, required:true},
+    idMovies: {type: Array},
     uniqueString: {type: String, required:true},
     verification: {type: Boolean, required:true}
+
 
 })
 

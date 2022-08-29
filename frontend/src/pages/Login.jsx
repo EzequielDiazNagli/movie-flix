@@ -3,7 +3,7 @@ import {Link as LinkRouter} from "react-router-dom"
 import { useDispatch } from "react-redux";
 import React, { useState } from 'react'
 import GoogleLogin from "../components/GoogleLogin";
-import userAction from "../redux/actions/userAction";
+import userAction from "../redux/actions/userActions";
 
 
 

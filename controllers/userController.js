@@ -6,14 +6,12 @@ const jwt = require('jsonwebtoken')
 
 const userControllers = {
 
-    signUpUser: async (req, res) => {
+    registerUser: async (req, res) => {
         const {
-            firstName,
+            name,
             lastName,
             password,
             email,
-            photoUser,
-            country,
             from
         } = req.body.userData
 
@@ -23,12 +21,12 @@ const userControllers = {
             const verification = false //por default
             const uniqueString = crypto.randomBytes(15).toString('hex') //metodos de crypto
             if (!newUser) { //si NO existe el usuario
-                const myNewUser = await new User({firstName, lastName, photoUser, email, country, verification,
+                const myNewUser = await new User({name, lastName, email, verification,
                     uniqueString: uniqueString,
                     password: [hashWord],
                     from: [from]
                 })
-                if (from === "signUpForm") { 
+                if (from === "registerForm") { 
                     await myNewUser.save()
                     await sendVerification(email, uniqueString)
                     res.json({
@@ -79,16 +77,14 @@ const userControllers = {
         }
     },
 
-    signInUser: async (req, res) => {
+    loginUser: async (req, res) => {
         const {
             email,
             password,
             from
-        } = req.body.logedUser
+        } = req.body.loggedUser
         try {
-            const loginUser = await User.findOne({
-                email
-            }) 
+            const loginUser = await User.findOne({email}) 
             if (!loginUser) { 
                 res.json({
                     success: false,
@@ -105,14 +101,13 @@ const userControllers = {
                     })
                     return
                 }
-                if (from === "signUpForm") { //si fue registrado por nuestro formulario
+                if (from === "registerForm") { //si fue registrado por nuestro formulario
                     if(loginUser.verification){
                         const userData = { //este objeto lo utilizaremos cuando veamos TOKEN
                             id: loginUser._id,
                             email: loginUser.email,
-                            firstName: loginUser.firstName,
+                            name: loginUser.name,
                             lastName: loginUser.lastName,
-                            photoUser: loginUser.photoUser,
                             from: loginUser.from
                         }
                         await loginUser.save()
@@ -121,7 +116,7 @@ const userControllers = {
                             response: {userData, token},
                             success: true,
                             from: from,
-                            message: `Welcome ${userData.firstName}!`
+                            message: `Welcome ${userData.name}!`
                         })
                     }else{
                         res.json({
@@ -137,8 +132,7 @@ const userControllers = {
                     const userData = { //este objeto lo utilizaremos cuando veamos TOKEN
                         id: loginUser._id,
                         email: loginUser.email,
-                        firstName: loginUser.firstName,
-                        photoUser: loginUser.photoUser,
+                        name: loginUser.name,
                         from: loginUser.from
                     }
                     await loginUser.save()
@@ -147,7 +141,7 @@ const userControllers = {
                         response: {userData, token},
                         success: true,
                         from: from,
-                        message: `Welcome ${userData.firstName}!`
+                        message: `Welcome ${userData.name}!`
                     })
 
                 }
@@ -162,12 +156,13 @@ const userControllers = {
     },
 
     verifyEmail: async(req, res) => {
+
         const {string} = req.params
         const user = await User.findOne({uniqueString: string})
         if(user){
             user.verification = true
             await user.save()
-            res.redirect('https://mytinerary-salgado.herokuapp.com/')
+            res.redirect('http://localhost:3000')
         }else{res.json({
             success: false,
             message: 'email has not been confirmed yet'})
@@ -181,15 +176,14 @@ const userControllers = {
                 response: {
                     userData:{
                         id:req.user.id,
-                        firstName:req.user.firstName,
+                        name:req.user.firstName,
                         lastName: req.user.lastName,
                         email: req.user.email,
-                        photoUser: req.user.photoUser,
                         from: 'token',
                     }
-                    // 'token': token
+                  
                 },
-                message: 'Welcome '+req.user.firstName})
+                message: 'Welcome '+req.user.name})
         }else{
             res.json({
                 success: false,
@@ -197,22 +191,28 @@ const userControllers = {
         }
     },
 
-    modifyUser: async (req, res) => {
-        const id = req.params.id 
-        const user = req.body.userData
-        let userDb
-        let error = null
-        try {
-            userDb = await User.findOneAndUpdate({_id : id}, user, {new: true}) 
-        } catch (err) {
-            error = err
-        }
-        res.json({
-            response: error ? 'ERROR' : userDb,
-            success: error ? false : true,
-            error: error
-        })
-    },
+    pushFav: async (req,res) => {
+        const idMovie = req.body.idMovies
+        const userLogged = req.user
+        console.log("idmovie",req.body)
+        console.log("userpassport", req.user)
+        
+        try{
+            const user = await User.findOne({_id: userLogged.id})
+            console.log("user", user)
+            if(user.idMovies.includes(idMovie)){
+                User.findOneAndUpdate({_id: userLogged.id}, {$pull: {idMovies:idMovie}}, {new:true})
+                .then(newUser => res.json({success:true, message: false, response: newUser.idMovies}))
+                .catch((error) => console.log(error))
+            }else{
+                User.findOneAndUpdate({_id: userLogged.id}, {$push: {idMovies:idMovie}}, {new:true})
+                .then(newUser => res.json({success:true, message: false, response: newUser.idMovies}))
+                .catch((error) => console.log(error))
+            }
+        }catch{(error) => res.json({success: false, response: error})}
+
+
+    }
 
 }
 

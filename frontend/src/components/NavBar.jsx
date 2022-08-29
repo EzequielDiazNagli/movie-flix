@@ -5,8 +5,9 @@ import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
 import Search from "@mui/icons-material/Search";
 import { useEffect, useState } from "react";
 import {Link as LinkRouter, useNavigate} from "react-router-dom"
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import filterAction from "../redux/actions/filterActions"
+import userActions from "../redux/actions/userActions";
 
 
 const navigation = [ 
@@ -24,7 +25,8 @@ export default function NavBar() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const [search, setSearch] = useState("");
-  const [filter, setFilter] = useState([]);
+  const loggedUser = useSelector(store => store.userReducer.loggedUser)
+  
 
 function handleSubmit(e){
 e.preventDefault()
@@ -34,7 +36,8 @@ if(e.isTrusted){
   setSearch("")
 
 }
-    
+ 
+
 
 }
   return (
@@ -101,13 +104,7 @@ if(e.isTrusted){
                 </form>
               </div>
               
-                <button
-                  type="button"
-                  className="p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
-                >
-                  <span className="sr-only">View notifications</span>
-                  <BellIcon className="h-6 w-6" aria-hidden="true" />
-                </button>
+        
 
                 {/* Profile dropdown */}
                 <Menu as="div" className="ml-3 relative z-10">
@@ -130,34 +127,62 @@ if(e.isTrusted){
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                   >
+
+
                     <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-                      <Menu.Item>
-                        {({ active }) => (
-                          <LinkRouter
-                            to={"/login"}
-                            className={classNames(
-                              active ? "bg-gray-100" : "",
-                              "block px-4 py-2 text-sm text-gray-700"
-                            )}
-                          >
-                            Login
-                          </LinkRouter>
+                      {loggedUser ?
+                      <Menu.Item >
+                      {({ active }) => (
+                        <LinkRouter
+                        onClick={() => dispatch(userActions.userLogout())}
+                          to={"/"}
+                          className={classNames(
+                            active ? "bg-gray-100" : "",
+                            "block px-4 py-2 text-sm text-gray-700"
+                          )}
+                        >
+                          Logout
+                        </LinkRouter>
+                      )}
+                    </Menu.Item> : 
+                    <>
+                    <Menu.Item>
+                    {({ active }) => (
+                      <LinkRouter
+                        to={"/login"}
+                        className={classNames(
+                          active ? "bg-gray-100" : "",
+                          "block px-4 py-2 text-sm text-gray-700"
                         )}
-                      </Menu.Item>
-                      <Menu.Item>
-                        {({ active }) => (
-                          <LinkRouter
-                            to={"/register"}
-                            className={classNames(
-                              active ? "bg-gray-100" : "",
-                              "block px-4 py-2 text-sm text-gray-700"
-                            )}
-                          >
-                            Register
-                          </LinkRouter>
-                        )}
-                      </Menu.Item>
+                      >
+                        Login
+                      </LinkRouter>
+                    )}
+                  </Menu.Item>
+                     <Menu.Item>
+                     {({ active }) => (
+                       <LinkRouter
+                         to={"/register"}
+                         className={classNames(
+                           active ? "bg-gray-100" : "",
+                           "block px-4 py-2 text-sm text-gray-700"
+                         )}
+                       >
+                         Register
+                       </LinkRouter>
+                     )}
+                   </Menu.Item>
+                   </>
+
+                    }
+                      
+
+                     
+
                     </Menu.Items>
+
+
+
                   </Transition>
                 </Menu>
               </div>

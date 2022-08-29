@@ -1,7 +1,7 @@
 import axios from 'axios';
 const urlBack = "http://localhost:4000";
 
-const userAction = {
+const userActions = {
 
     
     
@@ -49,7 +49,7 @@ const userAction = {
           return res;
         };
       },
-      userLogout: (closeUser) => {
+      userLogout: () => {
         return async (dispatch, getState) => {
           localStorage.removeItem("token");
           dispatch({
@@ -68,7 +68,7 @@ const userAction = {
       verifyToken: (token) => {
         return async (dispatch, getState) => {
           await axios
-            .get(`${urlBack}/api/auth/signInToken`, {
+            .get(`${urlBack}/api/logintoken`, {
               headers: { Authorization: "Bearer " + token },
             })
             .then((user) => {
@@ -105,6 +105,17 @@ const userAction = {
             });
         };
       },
+
+      pushFav: (idMovies) => {
+        const token = localStorage.getItem("token")
+        return async (dispatch, getState) => {
+          console.log(token)
+          const res = await axios.put(`${urlBack}/api/pushfav`, {idMovies} , {headers: { Authorization: "Bearer " + token},})
+          console.log(res)
+        };
+      },
+
+
 }
 
-export default userAction;
+export default userActions;

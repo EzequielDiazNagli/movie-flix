@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import jwt_decode from "jwt-decode";
 import { useDispatch } from "react-redux";
-import userAction from "../redux/actions/userAction";
+import userAction from "../redux/actions/userActions";
 import { useNavigate } from "react-router-dom";
 // import toast from "react-hot-toast";
 // import { toast } from 'react-toastify';

@@ -112,6 +112,11 @@ const userActions = {
           // console.log(token)
           const res = await axios.put(`${urlBack}/api/pushfav`, {idMovies} , {headers: { Authorization: "Bearer " + token},})
           console.log(res)
+            dispatch({
+              type: "FAVORITES",
+              payload: res.data.response
+            });
+          return res
         };
       },
 

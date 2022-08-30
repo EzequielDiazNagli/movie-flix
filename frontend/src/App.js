@@ -38,7 +38,7 @@ function App() {
     <div className="flex flex-col min-h-screen">
       <NavBar />
         <Routes>
-          <Route path= "/" element={<Index />}/>
+          <Route path= "/" element={<Index setReload={setReload}/>}/>
           <Route path= "/pagesearch" element={<PageSearch />}/>
           <Route path= "/details/:id" element={<Details />}/>
           <Route path= "/login" element={<Login />}/>

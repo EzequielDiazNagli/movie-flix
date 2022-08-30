@@ -12,7 +12,6 @@ export default function Buscador() {
   async function getFilter(search) {
     await fetch(
       `https://api.themoviedb.org/3/search/movie?api_key=ee2648f9f1e9bd8b7424b1f5bb21b561&language=en-US&query=${search}&page=1&include_adult=false`
-      // `https://api.themoviedb.org/3/search/multi?api_key=ee2648f9f1e9bd8b7424b1f5bb21b561&language=en-US&query=${search}&page=2&include_adult=false`
       )
       .then((response) => response.json())
       .then((json) => setMovieFilter(json.results));

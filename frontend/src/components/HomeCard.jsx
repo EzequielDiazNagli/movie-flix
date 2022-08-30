@@ -1,14 +1,23 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {Link as LinkRouter} from "react-router-dom"
 import userActions from "../redux/actions/userActions";
+import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 
 const getImageURL = (posterpath) => {
-  return `https://www.themoviedb.org/t/p/w220_and_h330_face${posterpath}`;
+    return `https://www.themoviedb.org/t/p/w220_and_h330_face${posterpath}`;
 };
 
-export default function HomeCard({ catalogo }) {
+export default function HomeCard({ catalogo, setReload }) {
     const dispatch = useDispatch()
+    const loggedUser = useSelector(store => store.userReducer.loggedUser)
+    const userFavorites = useSelector(store => store.userReducer.favorites)
+
+    async function onClick() {
+        await dispatch(userActions.pushFav(catalogo.id))
+    }
+
 
     return (
         <div className="w-56 h-full bg-white rounded-xl movieCard">
@@ -18,7 +27,17 @@ export default function HomeCard({ catalogo }) {
             alt={catalogo.title}
         />
         <div className='movieCard-description'>
-            <button onClick={() => dispatch(userActions.pushFav(catalogo.id))}>Fav</button>
+            
+            <button onClick={() => onClick()}>
+            {loggedUser ?
+                userFavorites.includes(catalogo.id)  ?
+                    <AiFillHeart/>
+                    :
+                    <AiOutlineHeart/>
+                :
+                <AiOutlineHeart/>
+            }
+            </button>
             <h1>{catalogo.title || catalogo.name}</h1>
             <h2>{catalogo.release_date || catalogo.first_air_date}</h2>
             <LinkRouter to={`/details/${catalogo.id}`}>

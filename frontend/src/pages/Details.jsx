@@ -2,10 +2,15 @@ import React from 'react'
 import "../styles/details.css"
 import {useParams} from "react-router-dom";
 import { useEffect, useState } from "react";
+import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
+import { useDispatch, useSelector } from "react-redux";
+import userActions from "../redux/actions/userActions";
+
 
 
 export default function Details() {
   const {id} = useParams()
+  const dispatch = useDispatch()
 
   const [movie, setMovie] = useState();
   const [cast, setCast] = useState();
@@ -37,6 +42,13 @@ export default function Details() {
     return `https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces${backdroppath}`;
   };
 
+  const loggedUser = useSelector(store => store.userReducer.loggedUser)
+  const userFavorites = useSelector(store => store.userReducer.favorites)
+
+  async function onClick() {
+      await dispatch(userActions.pushFav(movie.id))
+  }
+
   return (
     <div className='min-h-[100vh] bg-slate-600 flex flex-col gap-5'>
       <div className="detailsContainer" style={{backgroundImage:`url(${getBackGroundURL(movie?.backdrop_path)})`}}>
@@ -58,7 +70,18 @@ export default function Details() {
               </div>
             </div>
             <div className='detailsBoxTwo-B'>
-              <div>Icon</div>
+              <div>
+                <button onClick={() => onClick()}>
+                  {loggedUser ?
+                      userFavorites.includes(movie?.id)  ?
+                          <AiFillHeart/>
+                          :
+                          <AiOutlineHeart/>
+                      :
+                      <AiOutlineHeart/>
+                  }
+                </button>
+              </div>
               <div>Icon</div>
               <div>Icon</div>
             </div>

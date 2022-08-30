@@ -9,6 +9,10 @@ import { useDispatch, useSelector } from "react-redux";
 import filterAction from "../redux/actions/filterActions"
 import userActions from "../redux/actions/userActions";
 
+import Badge from '@mui/material/Badge';
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+
+
 
 const navigation = [ 
   { name: "Index", href: "/", current: true },
@@ -26,20 +30,19 @@ export default function NavBar() {
   const navigate = useNavigate()
   const [search, setSearch] = useState("");
   const loggedUser = useSelector(store => store.userReducer.loggedUser)
-  
+  const favorites = useSelector(store => store.userReducer.favorites)
+  console.log(favorites);
 
-function handleSubmit(e){
-e.preventDefault()
-dispatch(filterAction.filterReducer(search))
-if(e.isTrusted){
-  navigate("/pagesearch")
-  setSearch("")
+  function handleSubmit(e){
+    e.preventDefault()
+    dispatch(filterAction.filterReducer(search))
+    if(e.isTrusted){
+      navigate("/pagesearch")
+      setSearch("")
 
-}
- 
+    }
+  }
 
-
-}
   return (
     <Disclosure as="nav" className="bg-gray-800  sm:bg-transparent absolute z-10 w-full">
       {({ open }) => (
@@ -104,7 +107,15 @@ if(e.isTrusted){
                 </form>
               </div>
               
-        
+              <LinkRouter to="/favorites">
+                <Badge badgeContent={favorites.length} color="primary">
+                  {favorites.length > 0 ?
+                    <AiFillHeart className="text-white text-2xl"/>
+                    :
+                    <AiOutlineHeart className="text-2xl"/>
+                  }
+                </Badge>
+              </LinkRouter>
 
                 {/* Profile dropdown */}
                 <Menu as="div" className="ml-3 relative z-10">

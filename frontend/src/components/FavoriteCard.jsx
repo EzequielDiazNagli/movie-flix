@@ -12,14 +12,12 @@ const getImageURL = (posterpath) => {
 export default function HomeCard({ catalogo, setFavoriteReload }) {
     const dispatch = useDispatch()
     
-    function onClick() {
-        dispatch(userActions.pushFav(catalogo.id))            
+    async function onClick() {
+        await dispatch(userActions.pushFav(catalogo.id))
         setFavoriteReload(r => {
             return (
                 console.log("setFavoriteReload"), !r)})
     }
-
-    
 
     return (
         <div className="w-56 h-full bg-white rounded-xl movieCard">
@@ -30,7 +28,7 @@ export default function HomeCard({ catalogo, setFavoriteReload }) {
         />
         <div className='movieCard-description'>
             <button onClick={() => onClick()}>
-            <AiOutlineHeart/>
+            <AiFillHeart/>
             </button>
             <h1>{catalogo.title || catalogo.name}</h1>
             <h2>{catalogo.release_date || catalogo.first_air_date}</h2>

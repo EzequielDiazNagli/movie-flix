@@ -1,26 +1,21 @@
-import React from 'react'
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux';
 import "../styles/details.css"
-// import SearchCard from "../components/SearchCard"
-import userActions from '../redux/actions/userActions';
+import FavoriteCard from "../components/FavoriteCard"
 
-export default function Favorite() {
-    const dispatch = useDispatch()
-    const [latestMovie, setLatestMovie] = useState([]);
-    // let favoriteMovies = []
-
+export default function Favorite({setReload}) {
     const idMovies = useSelector(store => store.userReducer.favorites)
     const lastMovies = useSelector(store => store.userReducer.lastMovies)
+    const [reload,setFavoriteReload] = useState(false)
 
-  
-    
-
-console.log(lastMovies)
-console.log(idMovies)
+    useEffect(() =>{
+        console.log("PROBANDO LA RECARGA");
+        setReload(r => {
+            return (
+                console.log("setReload"), !r)})
+    },[!reload])
 
 function getMatch(lastMovies, idMovies) {
-    console.log("fun")
     let matches = [];
 
     for ( let i = 0; i < lastMovies?.length; i++ ) {
@@ -28,24 +23,19 @@ function getMatch(lastMovies, idMovies) {
             if ( lastMovies[i].id === idMovies[e] ) matches.push( lastMovies[i] );
         }
     }
-    console.log("ter")
-    console.log(matches)
     return matches;
 }
     
-    let asd = getMatch(lastMovies, idMovies)
-    console.log(asd)
-    
-    
-
-
-    // console.log(favoriteMovies)
+    let favorites = getMatch(lastMovies, idMovies)
+    console.log(favorites)
 
     return (
-        <div className='min-h-[100vh] bg-slate-600 flex flex-col gap-5'>
-            <div className="detailsContainer">
-                {/* <SearchCard /> */}
-            </div>
+        <div className='min-h-[100vh] bg-slate-600 flex justify-center flex-wrap gap-5 pt-[15vh] px-10'>
+                {favorites.map((fav, index) => {
+                    return (
+                        <FavoriteCard key={index} catalogo={fav} setFavoriteReload={setFavoriteReload}/>
+                    )
+                })}
         </div>
     )
 }

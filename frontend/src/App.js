@@ -6,13 +6,14 @@ import Details from "./pages/Details.jsx";
 import Register from "./pages/Register.jsx";
 import Login from "./pages/Login.jsx";
 import Favorite from "./pages/Favorite.jsx";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import userActions from "./redux/actions/userActions.js";
 
 
 function App() {
   const dispatch = useDispatch()
+  const [reload,setReload] = useState(false)
 
   async function getLatestMovie() {
     await fetch(
@@ -20,9 +21,8 @@ function App() {
     )
     .then((response) => response.json())
     .then((json) => dispatch(userActions.lastMovies(json.results)));
-}
+  }
 
-  
   useEffect(() => {
     if(localStorage.getItem('token')!== null) {
         const token = localStorage.getItem("token")
@@ -31,8 +31,8 @@ function App() {
     getLatestMovie()
     dispatch(userActions.getOneUser())
     // eslint-disable-next-line
-  },[])
-
+    console.log("USEEFEECT DE APPPPPPPPPP");
+  },[!reload])
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -43,8 +43,7 @@ function App() {
           <Route path= "/details/:id" element={<Details />}/>
           <Route path= "/login" element={<Login />}/>
           <Route path= "/register" element={<Register />}/>
-          <Route path= "/favorites" element={<Favorite />}/>
-          
+          <Route path= "/favorites" element={<Favorite setReload={setReload} />}/>
         </Routes>
     </div>
   );

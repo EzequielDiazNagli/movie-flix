@@ -109,7 +109,7 @@ const userActions = {
       pushFav: (idMovies) => {
         const token = localStorage.getItem("token")
         return async (dispatch, getState) => {
-          console.log(token)
+          // console.log(token)
           const res = await axios.put(`${urlBack}/api/pushfav`, {idMovies} , {headers: { Authorization: "Bearer " + token},})
           console.log(res)
         };
@@ -118,7 +118,7 @@ const userActions = {
       getOneUser: () => {
         const token = localStorage.getItem("token")
         return async (dispatch, getState) => {
-       
+        
           const res = await axios.get(`${urlBack}/api/getoneuser`, {headers: { Authorization: "Bearer " + token},})
           dispatch({
             type: "FAVORITES",
@@ -130,9 +130,9 @@ const userActions = {
       },
 
       lastMovies: (lastmovies) => {
-       
+      
         return async (dispatch, getState) => {
-       dispatch({
+      dispatch({
             type: "LAST_MOVIES",
             payload: lastmovies
           });
@@ -140,10 +140,6 @@ const userActions = {
         
         };
       },
-
-     
-
-
 }
 
 export default userActions;

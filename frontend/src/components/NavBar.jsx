@@ -1,29 +1,23 @@
 /* This example requires Tailwind CSS v2.0+ */
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
-import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
-import Search from "@mui/icons-material/Search";
+import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import { useEffect, useState } from "react";
 import {Link as LinkRouter, useNavigate} from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux";
 import filterAction from "../redux/actions/filterActions"
 import userActions from "../redux/actions/userActions";
-
 import Badge from '@mui/material/Badge';
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 
-
-
 const navigation = [ 
   { name: "Index", href: "/", current: true },
-  { name: "Popular", href: "#", current: false },
+  // { name: "Popular", href: "#", current: false },
 ];
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
-
-
 
 export default function NavBar() {
   const dispatch = useDispatch()
@@ -31,7 +25,6 @@ export default function NavBar() {
   const [search, setSearch] = useState("");
   const loggedUser = useSelector(store => store.userReducer.loggedUser)
   const favorites = useSelector(store => store.userReducer.favorites)
-  console.log(favorites);
 
   function handleSubmit(e){
     e.preventDefault()
@@ -39,7 +32,6 @@ export default function NavBar() {
     if(e.isTrusted){
       navigate("/pagesearch")
       setSearch("")
-
     }
   }
 
@@ -99,8 +91,11 @@ export default function NavBar() {
               </div>
               <LinkRouter to="/favorites">
                 <Badge badgeContent={favorites.length} color="primary">
-                  {favorites.length > 0 ?
-                    <AiFillHeart className="text-white text-2xl"/>
+                  {loggedUser !== null ?
+                    favorites.length > 0 ?
+                      <AiFillHeart className="text-white text-2xl"/>
+                      :
+                      <AiOutlineHeart className="text-2xl"/>
                     :
                     <AiOutlineHeart className="text-2xl"/>
                   }

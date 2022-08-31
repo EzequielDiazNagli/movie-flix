@@ -1,8 +1,19 @@
 import React from 'react'
+import { useEffect, useState } from "react";
+import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
+import { useDispatch, useSelector } from "react-redux";
+import userActions from "../redux/actions/userActions";
 
 
 
 export default function SearchCard({movie}) {
+	const dispatch = useDispatch()
+	const loggedUser = useSelector(store => store.userReducer.loggedUser)
+	const userFavorites = useSelector(store => store.userReducer.favorites)
+
+	async function onClick() {
+		await dispatch(userActions.pushFav(movie.id))
+	}
 
 	const getImageURL = (posterpath) => {
 		return `https://www.themoviedb.org/t/p/w220_and_h330_face${posterpath}`;
@@ -17,7 +28,7 @@ export default function SearchCard({movie}) {
         </div>
 			<div className="w-full md:w-2/3 bg-white flex flex-col space-y-2 p-3">
 				<div className="flex justify-between item-center">
-					<p className="text-gray-500 font-medium hidden md:block">Vacations</p>
+					{/* <p className="text-gray-500 font-medium hidden md:block">Vacations</p> */}
 					<div className="flex items-center">
 						<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-yellow-500" viewBox="0 0 20 20"
 							fill="currentColor">
@@ -29,16 +40,28 @@ export default function SearchCard({movie}) {
 							<span className="text-gray-500 font-normal"> ({movie.vote_count} votes)</span>
 						</p>
 					</div>
-					<div className="">
+					<div>
+						<button onClick={() => onClick()}>
+							{loggedUser ?
+								userFavorites.includes(movie?.id)  ?
+									<AiFillHeart className="text-black text-2xl"/>
+									:
+									<AiOutlineHeart className="text-black text-2xl"/>
+								:
+								<AiOutlineHeart className="text-black text-2xl"/>
+							}
+						</button>
+					</div>
+					{/* <div className="">
 						<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-pink-500" viewBox="0 0 20 20"
 							fill="currentColor">
 							<path fillRule="evenodd"
 								d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
 								clipRule="evenodd" />
 						</svg>
-					</div>
-					<div className="bg-gray-200 px-3 py-1 rounded-full text-xs font-medium text-gray-800 hidden md:block">
-						Superhost</div>
+					</div> */}
+					{/* <div className="bg-gray-200 px-3 py-1 rounded-full text-xs font-medium text-gray-800 hidden md:block">
+						Superhost</div> */}
 				</div>
 				<h3 className="font-black text-gray-800 md:text-3xl text-xl">{movie.title}</h3>
 				<p className="md:text-lg text-gray-500 text-base line-clamp-3">{movie.overview}</p>

@@ -31,7 +31,6 @@ function App() {
     getLatestMovie()
     dispatch(userActions.getOneUser())
     // eslint-disable-next-line
-    console.log("USEEFEECT DE APPPPPPPPPP");
   },[!reload])
 
   return (

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useSelector } from 'react-redux';
 import SearchCard from '../components/SearchCard'
 import { useEffect } from 'react';
+import "../styles/index.css";
 
 export default function Buscador() {
 
@@ -25,24 +26,20 @@ export default function Buscador() {
 
 
   return (
-    <div className="bg-slate-600 flex flex-col min-h-screen gap-3 items-center pt-[10vh]">
-      {movieFilter?.length ? 
-
-      movieFilter?.map((movie, index) => {
-        return(
-          
-          <div key={index} className='flex'>
-            <SearchCard movie={movie}/>
-          </div>
-        )
-
-      })
-
-      : <p className='text-3xl '>not found</p>
-      
-    
-    
-    }
+    <div className="bg-slate-600 flex flex-col min-h-screen gap-3 items-center ">
+      <div className='bodyIndex min-h-[100vh] w-full flex flex-col gap-5 pt-[15vh] pb-[10vh] px-10'>
+        {movieFilter?.length ? 
+        movieFilter?.map((movie, index) => {
+          return(
+            
+            <div key={index} className='flex'>
+              <SearchCard movie={movie}/>
+            </div>
+          )
+        })
+        : <p className='text-3xl '>not found</p>
+        }
+      </div>
     </div>
   )
 }

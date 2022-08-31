@@ -20,7 +20,7 @@ export default function LasteMovies() {
 
 
     return (
-        <div className="h-2/3 w-full flex gap-5 overflow-x-auto pb-2">
+        <div className="h-full w-full flex gap-5 overflow-x-auto pb-2">
             {latestMovie?.map((movie, index) => {
             return (
                 <div key={index} className="w-full h-full ">

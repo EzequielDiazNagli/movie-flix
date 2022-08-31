@@ -54,8 +54,10 @@ export default function Details() {
       <div className="detailsContainer" style={{backgroundImage:`url(${getBackGroundURL(movie?.backdrop_path)})`}}>
         <div className='detailsContainerA'>
         <div className='detailsBox'>
-          <div className='detailsBoxOne'>
-            <img src={getImageURL(movie?.poster_path)} alt=""/>
+          <div className='poi'>
+            <div className='detailsBoxOne'>
+              <img src={getImageURL(movie?.poster_path)} alt=""/>
+            </div>
           </div>
           <div className='detailsBoxTwo'>
             <div className='detailsBoxTwo-A'>

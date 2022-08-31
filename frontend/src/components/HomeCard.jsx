@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {Link as LinkRouter} from "react-router-dom"
 import userActions from "../redux/actions/userActions";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
+import "../styles/index.css"
 
 const getImageURL = (posterpath) => {
     return `https://www.themoviedb.org/t/p/w220_and_h330_face${posterpath}`;
@@ -31,11 +32,11 @@ export default function HomeCard({ catalogo, setReload }) {
             <button onClick={() => onClick()}>
             {loggedUser ?
                 userFavorites.includes(catalogo.id)  ?
-                    <AiFillHeart/>
+                    <AiFillHeart className="text-white text-2xl"/>
                     :
-                    <AiOutlineHeart/>
+                    <AiOutlineHeart className="text-white text-2xl"/>
                 :
-                <AiOutlineHeart/>
+                <AiOutlineHeart className="text-white text-2xl"/>
             }
             </button>
             <h1>{catalogo.title || catalogo.name}</h1>

@@ -9,6 +9,7 @@ import Favorite from "./pages/Favorite.jsx";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import userActions from "./redux/actions/userActions.js";
+import moviesActions from "./redux/actions/moviesActions.js";
 
 
 function App() {
@@ -21,13 +22,8 @@ function App() {
     "https://api.themoviedb.org/3/movie/now_playing?api_key=ee2648f9f1e9bd8b7424b1f5bb21b561&language=en-US&page=1"
     )
     .then((response) => response.json())
-    .then((json) => dispatch(userActions.lastMovies(json.results)));
+    .then((json) => dispatch(moviesActions.lastMovies(json.results)));
   }
-
-  // const [pathName, setPathName] = useState(window.location.pathname)
-  // console.log(pathName);
-
-  // const asd = window.location.pathname === "/"
 
   useEffect(() => {
     if(localStorage.getItem('token')!== null) {

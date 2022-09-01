@@ -9,11 +9,9 @@ import moviesActions from "../redux/actions/moviesActions"
 import userActions from "../redux/actions/userActions";
 import Badge from '@mui/material/Badge';
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
-// import { useLocation } from "react-router-dom";
 
 const navigation = [ 
   { name: "Home", href: "/", current: true },
-  // { name: "Popular", href: "#", current: false },
 ];
 
 function classNames(...classes) {
@@ -22,13 +20,9 @@ function classNames(...classes) {
 
 export default function NavBar() {
   const dispatch = useDispatch()
-  // const useLocation = useLocation()
-  // console.log(useLocation);
   const [search, setSearch] = useState("");
   const loggedUser = useSelector(store => store.userReducer.loggedUser)
   const favorites = useSelector(store => store.userReducer.favorites)
-
-  // console.log(window.location.pathname);
 
   function handleSubmit(e){
     e.preventDefault()

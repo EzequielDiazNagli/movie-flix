@@ -8,7 +8,7 @@ const userActions = {
     userRegister: (userData) => {
         return async (dispatch, getState) => {
           let res = await axios.post(`${urlBack}/api/register`, { userData });
-         dispatch({
+          dispatch({
             type: "MESSAGE",
             payload: {
               view: true,
@@ -24,7 +24,6 @@ const userActions = {
           let res = await axios.post(`${urlBack}/api/login`, { loggedUser });
           if (res.data.success) {
             localStorage.setItem("token", res.data.response.token);
-    
             dispatch({
               type: "USER",
               payload: {
@@ -62,6 +61,10 @@ const userActions = {
                 success: true,
               },
             },
+          });
+          dispatch({
+            type: "FAVORITES",
+            payload: [],
           });
         };
       },
@@ -123,14 +126,11 @@ const userActions = {
       getOneUser: () => {
         const token = localStorage.getItem("token")
         return async (dispatch, getState) => {
-        
           const res = await axios.get(`${urlBack}/api/getoneuser`, {headers: { Authorization: "Bearer " + token},})
           dispatch({
             type: "FAVORITES",
             payload: res.data.response
           });
-          
-        
         };
       },
 

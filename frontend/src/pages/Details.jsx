@@ -5,7 +5,8 @@ import { useEffect, useState } from "react";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import userActions from "../redux/actions/userActions";
-
+import { BsFillArrowRightCircleFill } from "react-icons/bs";
+import moviesActions from '../redux/actions/moviesActions';
 
 
 export default function Details() {
@@ -13,6 +14,7 @@ export default function Details() {
   const dispatch = useDispatch()
 
   const [movie, setMovie] = useState();
+  // console.log(movie);
   const [cast, setCast] = useState();
 
   async function getMovieId() {
@@ -30,9 +32,18 @@ export default function Details() {
       .then((json) => setCast(json));
   }
 
+  // async function getLatestMovie() {
+  //   await fetch(
+  //   "https://api.themoviedb.org/3/movie/now_playing?api_key=ee2648f9f1e9bd8b7424b1f5bb21b561&language=en-US&page=1"
+  //   )
+  //   .then((response) => response.json())
+  //   .then((json) => dispatch(moviesActions.lastMovies(json)));
+  // }
+
   useEffect(() => {
     getMovieId();
     getCreditId();
+    // getLatestMovie()
   }, []);
   
   const getImageURL = (posterpath) => {
@@ -64,11 +75,11 @@ export default function Details() {
               <h1>{movie?.title}</h1>
               <div className='detailsBoxTwo-A-info'>
                 <p>{movie?.release_date}</p>
-                {/* {movie.genres.map(gen => {
+                {movie?.genres.map((gen, index) => {
                   return(
-                  <p>{gen.}</p>
+                  <p key={index}>{gen.name}</p>
                   )
-                })} */}
+                })}
               </div>
             </div>
             <div className='detailsBoxTwo-B'>
@@ -76,34 +87,32 @@ export default function Details() {
                 <button onClick={() => onClick()}>
                   {loggedUser ?
                       userFavorites.includes(movie?.id)  ?
-                          <AiFillHeart/>
+                          <AiFillHeart className="text-white text-2xl"/>
                           :
-                          <AiOutlineHeart/>
+                          <AiOutlineHeart className="text-white text-2xl"/>
                       :
-                      <AiOutlineHeart/>
+                      <AiOutlineHeart className="text-white text-2xl"/>
                   }
                 </button>
               </div>
-              <div>Icon</div>
-              <div>Icon</div>
             </div>
             <div className='detailsBoxTwo-C'>
-              <h2>Vista General</h2>
+              <h2>Overview</h2>
               <div>
                 <p>{movie?.overview}</p>
               </div>
               <div className='info'>
+                {/* <div className='infoCreator'>
+                  <h3>Production</h3>
+                  {movie?.production_companies.map(company => {
+                  return(
+                  <p>{company.name}</p>
+                  )
+                })}
+                </div> */}
                 <div className='infoCreator'>
-                  <h3>Nombre</h3>
-                  <p>Apellido</p>
-                </div>
-                <div className='infoCreator'>
-                  <h3>Nombre</h3>
-                  <p>Apellido</p>
-                </div>
-                <div className='infoCreator'>
-                  <h3>Nombre</h3>
-                  <p>Apellido</p>
+                  <a href={movie?.homepage} target="_blank" rel="noopener noreferrer">HomePage</a>
+                  <a href={movie?.homepage} target="_blank" rel="noopener noreferrer"><BsFillArrowRightCircleFill/></a>
                 </div>
               </div>
             </div>

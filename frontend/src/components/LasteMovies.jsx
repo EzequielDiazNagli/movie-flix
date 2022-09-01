@@ -1,10 +1,15 @@
 import React from 'react'
 import { useEffect, useState } from "react";
 import HomeCard from "../components/HomeCard";
+import { useSelector,useDispatch } from 'react-redux';
+import moviesActions from '../redux/actions/moviesActions';
 
 export default function LasteMovies() {
     const [latestMovie, setLatestMovie] = useState([]);
-    const [reload,setReload] = useState(false)
+    const [reload,setReload] = useState(false);
+    const dispatch = useDispatch();
+    const filterMovies = useSelector(store => store.moviesReducer.filterMovies)
+    const searchMovies = useSelector(store => store.moviesReducer.searchMovies)
 
     async function getLatestMovie() {
         await fetch(
@@ -16,14 +21,17 @@ export default function LasteMovies() {
 
     useEffect(() => {
         getLatestMovie();
+        dispatch(moviesActions.lastMovies(latestMovie))
     }, [!reload]);
 
+    let data = searchMovies ? filterMovies : latestMovie
+    console.log(data);
 
     return (
         <div className="h-full w-full flex gap-5 overflow-x-auto pb-2">
-            {latestMovie?.map((movie, index) => {
+            {data?.map((movie, index) => {
             return (
-                <div key={index} className="w-full h-full ">
+                <div key={index} className="h-full">
                     <HomeCard key={index} catalogo={movie} setReload={setReload}/>
                 </div>
             );

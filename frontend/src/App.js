@@ -7,13 +7,14 @@ import Register from "./pages/Register.jsx";
 import Login from "./pages/Login.jsx";
 import Favorite from "./pages/Favorite.jsx";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import userActions from "./redux/actions/userActions.js";
 
 
 function App() {
   const dispatch = useDispatch()
   const [reload,setReload] = useState(false)
+  const loggedUser = useSelector(store => store.userReducer.loggedUser)
 
   async function getLatestMovie() {
     await fetch(
@@ -23,21 +24,30 @@ function App() {
     .then((json) => dispatch(userActions.lastMovies(json.results)));
   }
 
+  // const [pathName, setPathName] = useState(window.location.pathname)
+  // console.log(pathName);
+
+  // const asd = window.location.pathname === "/"
+
   useEffect(() => {
     if(localStorage.getItem('token')!== null) {
         const token = localStorage.getItem("token")
         dispatch(userActions.verifyToken(token))
     }
     getLatestMovie()
-    dispatch(userActions.getOneUser())
     // eslint-disable-next-line
   },[!reload])
 
+  useEffect(() => {
+    dispatch(userActions.getOneUser())
+  },[loggedUser])
+
+
   return (
     <div className="flex flex-col min-h-screen">
-      <NavBar />
+      <NavBar/>
         <Routes>
-          <Route path= "/" element={<Index setReload={setReload}/>}/>
+          <Route path= "/" element={<Index/>}/>
           <Route path= "/pagesearch" element={<PageSearch />}/>
           <Route path= "/details/:id" element={<Details />}/>
           <Route path= "/login" element={<Login />}/>

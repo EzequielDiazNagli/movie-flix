@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux'
-import filterReducer from './filterReducer'
+import moviesReducer from './moviesReducer'
 import userReducer from './userReducer'
 
 const mainReducer = combineReducers({
 
-    filterReducer,
-    userReducer
+    userReducer,
+    moviesReducer
 
 })
 export default mainReducer

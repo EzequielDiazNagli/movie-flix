@@ -5,13 +5,14 @@ import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import { useEffect, useState } from "react";
 import {Link as LinkRouter, useNavigate} from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux";
-import filterAction from "../redux/actions/filterActions"
+import moviesActions from "../redux/actions/moviesActions"
 import userActions from "../redux/actions/userActions";
 import Badge from '@mui/material/Badge';
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+// import { useLocation } from "react-router-dom";
 
 const navigation = [ 
-  { name: "Index", href: "/", current: true },
+  { name: "Home", href: "/", current: true },
   // { name: "Popular", href: "#", current: false },
 ];
 
@@ -21,19 +22,23 @@ function classNames(...classes) {
 
 export default function NavBar() {
   const dispatch = useDispatch()
-  const navigate = useNavigate()
+  // const useLocation = useLocation()
+  // console.log(useLocation);
   const [search, setSearch] = useState("");
   const loggedUser = useSelector(store => store.userReducer.loggedUser)
   const favorites = useSelector(store => store.userReducer.favorites)
 
+  // console.log(window.location.pathname);
+
   function handleSubmit(e){
     e.preventDefault()
-    dispatch(filterAction.filterReducer(search))
-    if(e.isTrusted){
-      navigate("/pagesearch")
-      setSearch("")
-    }
   }
+
+  useEffect(()=> {
+    dispatch(moviesActions.filterMovies(search))
+    // eslint-disable-next-line
+  },[search])
+  
 
   return (
     <Disclosure as="nav" className="bg-gray-800  sm:bg-transparent absolute z-10 w-full">
@@ -82,13 +87,13 @@ export default function NavBar() {
               </div>
               <div className="gap-2 absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-0 sm:pr-0">
                 {/* Search*/}
-              <div className="buscador">
-                <form onSubmit={handleSubmit}>
-                    <label>
-                      <input type="text" name="name" placeholder="Search..." value={search} onChange={e => setSearch(e.target.value)}/>
-                    </label>
-                </form>
-              </div>
+                  <div className="buscador">
+                    <form onSubmit={handleSubmit}>
+                        <label>
+                          <input type="text" name="name" placeholder="Search..." onKeyUp={e => setSearch(e.target.value)}/>
+                        </label>
+                    </form>
+                  </div>
               <LinkRouter to="/favorites">
                 <Badge badgeContent={favorites.length} color="primary">
                   {loggedUser !== null ?

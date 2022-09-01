@@ -27,7 +27,7 @@ function getMatch(lastMovies, idMovies) {
 }
     
     let favorites = getMatch(lastMovies, idMovies)
-    console.log(favorites);
+    // console.log(favorites);
     // function fiveRandom(favorites){
     //     return [...favorites]
     //         .sort(() => Math.random() > 0.5 ? 1 : -1)

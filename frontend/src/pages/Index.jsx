@@ -3,7 +3,7 @@ import "../styles/index.css";
 import Carrusel from "../components/Carrusel"
 import LasteMovies from "../components/LasteMovies";
 
-export default function Body({}) {
+export default function Body() {
 
   return (
     <div className="min-h-screen bg-slate-600 flex flex-col">
@@ -15,7 +15,7 @@ export default function Body({}) {
           <h1 className="text-lg sm:text-2xl">Now Playing</h1>
           {/* <h1 className="text-base sm:text-2xl">All Movies</h1> */}
         </div>
-        <LasteMovies/>
+          <LasteMovies/>
       </div>
     </div>
   );

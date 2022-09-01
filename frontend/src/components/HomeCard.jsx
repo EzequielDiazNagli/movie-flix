@@ -10,7 +10,7 @@ const getImageURL = (posterpath) => {
     return `https://www.themoviedb.org/t/p/w220_and_h330_face${posterpath}`;
 };
 
-export default function HomeCard({ catalogo, setReload }) {
+export default function HomeCard({ catalogo }) {
     const dispatch = useDispatch()
     const loggedUser = useSelector(store => store.userReducer.loggedUser)
     const userFavorites = useSelector(store => store.userReducer.favorites)
@@ -39,8 +39,8 @@ export default function HomeCard({ catalogo, setReload }) {
                 <AiOutlineHeart className="text-white text-2xl"/>
             }
             </button>
-            <h1>{catalogo.title || catalogo.name}</h1>
-            <h2>{catalogo.release_date || catalogo.first_air_date}</h2>
+            <h1>{catalogo.title}</h1>
+            <h2>{catalogo.release_date}</h2>
             <LinkRouter to={`/details/${catalogo.id}`}>
                 <button> Read More
                 <span></span>

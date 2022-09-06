@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
 * {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .estreno {
@@ -25,29 +25,29 @@
   background: rgb(219, 219, 219);
 }
 
-.bodyIndex{
+.bodyIndex {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-.movieCard{
-/* box-shadow: 0 1em 1em rgba(0, 0, 0, 0.5) !important; */
-background: radial-gradient(#111 50%, #000 100%);
-overflow: hidden;
-position: relative;
+.movieCard {
+  /* box-shadow: 0 1em 1em rgba(0, 0, 0, 0.5) !important; */
+  background: radial-gradient(#111 50%, #000 100%);
+  overflow: hidden;
+  position: relative;
 }
 
-.movieCard img{
+.movieCard img {
   display: block;
   transform: scale(1.1);
   transition: all 0.3s ease-out;
 }
 
-.movieCard:hover img{
+.movieCard:hover img {
   transform: scale(1);
   opacity: 0.5;
 }
 
-.movieCard-description{
+.movieCard-description {
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -62,7 +62,7 @@ position: relative;
   color: #fff;
   font-size: 18px;
 }
-.movieCard-description h1{
+.movieCard-description h1 {
   font-weight: 700;
   font-size: 32px;
   transform: translateY(30px);
@@ -70,13 +70,13 @@ position: relative;
   transition: all 0.3s ease-out;
   color: white;
 }
-.movieCard-description h2{
+.movieCard-description h2 {
   color: white;
   transform: translateY(30px);
   opacity: 0;
   transition: all 0.3s ease-out;
 }
-.movieCard-description button{
+.movieCard-description button {
   transform: translateY(30px);
   opacity: 0;
   transition: all 0.3s ease-out;
@@ -105,8 +105,8 @@ button span {
   background: white;
   z-index: -1;
   border: 2px solid white;
-  border-radius: 10px
- }
+  border-radius: 10px;
+}
 button span::before {
   content: "";
   display: block;
@@ -118,38 +118,38 @@ button span::before {
   left: 50%;
   transform: translate(-50%, -50%) rotate(-60deg);
   transition: all 0.3s;
- }
+}
 button:hover span::before {
   transform: translate(-50%, -50%) rotate(-90deg);
   width: 100%;
-  background: #6366F1;
- }
-.movieCard-description button:hover{
+  background: #6366f1;
+}
+.movieCard-description button:hover {
   color: white;
 }
 button:active span::before {
   background: #2751cd;
- }
-
-.movieCard:hover .movieCard-description h1{
-  opacity: 1;
-  transform: translateY(0);
-}
-.movieCard:hover .movieCard-description h2{
-  opacity: 1;
-  transform: translateY(0);
-}
-.movieCard:hover .movieCard-description button{
-  opacity: 1;
-  transform: translateY(0);
 }
 
-.buscador{
+.movieCard:hover .movieCard-description h1 {
+  opacity: 1;
+  transform: translateY(0);
+}
+.movieCard:hover .movieCard-description h2 {
+  opacity: 1;
+  transform: translateY(0);
+}
+.movieCard:hover .movieCard-description button {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.buscador {
   background-color: rgba(0, 0, 0, 0.3);
   border-radius: 10px;
   margin-right: 0.5rem;
 }
-.buscador input{
+.buscador input {
   background-color: transparent;
   border: 1px solid rgba(255, 255, 255, 0.4);
   padding: 0.5rem;
@@ -159,13 +159,13 @@ button:active span::before {
   transition: all 0.5s;
 }
 
-@media(min-width: 375px) {
-  .buscador input{
+@media (min-width: 375px) {
+  .buscador input {
     width: 10rem;
   }
 }
-@media(min-width: 640px) {
-  .buscador input:focus{
+@media (min-width: 640px) {
+  .buscador input:focus {
     width: 15rem;
   }
 }

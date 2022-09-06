@@ -9,6 +9,7 @@ import moviesActions from "../redux/actions/moviesActions"
 import userActions from "../redux/actions/userActions";
 import Badge from '@mui/material/Badge';
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import logo from "../assets/logo2.png"
 
 const navigation = [ 
   { name: "Home", href: "/", current: true },
@@ -55,7 +56,7 @@ export default function NavBar() {
                 <div className="flex-shrink-0 flex items-center">
                   <img
                     className="hidden sm:block h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/workflow-mark.svg?color=indigo&shade=500"
+                    src={logo}
                     alt="Workflow"
                   />
                 </div>

@@ -1,7 +1,7 @@
 const initialState = {
     lastMovies: [],
     filterMovies: [],
-    searchMovies: []
+    searchMovies: ""
 }
 
 const movies = (state = initialState, action) => {

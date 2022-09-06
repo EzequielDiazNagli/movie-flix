@@ -34,8 +34,9 @@ function App() {
     // eslint-disable-next-line
   },[!reload])
 
+
   useEffect(() => {
-    dispatch(userActions.getOneUser())
+    if(loggedUser)dispatch(userActions.getOneUser())
   },[loggedUser])
 
 

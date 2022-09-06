@@ -37,12 +37,11 @@ const sendVerification = async (email, string) => {
     subject: "Verify your account",
     html: `
         <div style="color:#0c252c;font-family: 'Arial',sans-serif">
-            <h3 style="font-weight:bold">Welcome to Greeneable! 🛒</h3>
+            <h3 style="font-weight:bold">Welcome to Movie-Flix!</h3>
             <p>You're almost there ! We are very glad to have you as a member of our community!</p>
-            <p> Please, click <a style="color:#007acc font-weight:bold" href="http://localhost:4000/api/verify/${string}">HERE</a> to verify your account.</p>
-                <div style="background-color:#13542d; padding: 1rem"> 
-                    <img style="text-align: center" width="350" src="https://i.ibb.co/WnCp43G/greeneable-logo.png">
-                    <h4 style="color: white;">The sustainable solution to your daily needs </h4>
+            <p> Please, click <a style="color:#007acc font-weight:bold" href="https://app-movie-flix.herokuapp.com/api/verify/${string}">HERE</a> to verify your account.</p>
+                <div style="background-color:#13542d; padding: 1rem">
+                    <h4 style="color: white;">All your favorite movies</h4>
                 </div>
         </div>
         `,
